@@ -12,23 +12,27 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/mMobileEt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Phone number"/>
 
         <Button
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Verify"/>
     </LinearLayout>
 
     <EditText
+        android:id="@+id/mCodeEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter code"/>
 
     <EditText
+        android:id="@+id/mPassEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"/>
@@ -37,6 +41,7 @@
         android:layout_height="wrap_content"
         android:hint="Confirm-Password"/>
     <Button
+        android:id="@+id/mRegisterBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

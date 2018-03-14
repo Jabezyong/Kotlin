@@ -1,8 +1,7 @@
-if(isUserModule.toBoolean()) {
-    apply plugin: 'com.android.application'
-}else{
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
@@ -24,10 +23,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        dexOptions {
-            // release & debug is in project animators
-            matchingFallbacks = ['release', 'debug']
-        }
+
+
 
         release {
             minifyEnabled true
@@ -38,34 +35,46 @@ android {
             //...
             matchingFallbacks = ['debug', 'release']
         }
+
     }
 
-    sourceSets{
-        main{
-            if(isUserModule.toBoolean()){
+    sourceSets {
+        main {
+            if (isUserModule.toBoolean()) {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
                 //exclude java files in release mode
                 java {
                     exclude 'debug/**'
                 }
-            }else{
+            } else {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             }
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+
+    compile project(':provider')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "com.google.dagger:dagger:${dagger_version}"
+    kapt "com.google.dagger:dagger-compiler:${dagger_version}"
 }
 
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
+
+repositories {
+    mavenCentral()
+}
+

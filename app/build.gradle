@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -32,8 +33,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compile project(':provider')
     if(isUserModule.toBoolean()){
-        implementation project(':usercenter')
+        compile project(':usercenter')
     }
 
 }

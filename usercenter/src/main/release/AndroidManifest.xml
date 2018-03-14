@@ -3,8 +3,8 @@
     package="jabez.example.com.usercenter">
 
     <application>
-        <activity android:name=".ui.activities.RegisterActivity">
-        </activity>
+        <activity android:name=".ui.activities.RegisterActivity"></activity>
+        <activity android:name=".ui.activities.TestActivity"></activity>
     </application>
 
 </manifest>
